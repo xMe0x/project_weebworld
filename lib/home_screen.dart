@@ -24,7 +24,14 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      theme: ThemeData(
+        useMaterial3: false,
+        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: Colors.white,
+        ),
+      ),
       home: Scaffold(
+        backgroundColor: Colors.white,
         body: IndexedStack(
           index: _selectedIndex,
           children: _navigation.values.map((page) => page["screen"]!).toList(),

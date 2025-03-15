@@ -15,7 +15,8 @@ class Navigationmap extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return BottomNavigationBar(
-         currentIndex: widget.selectedIndex, // ใช้ค่าจาก HomeScreen
+
+        currentIndex: widget.selectedIndex, // ใช้ค่าจาก HomeScreen
       onTap: (index) {
         widget.onItemTapped(index); // ส่งค่าไปที่ HomeScreen
       },
