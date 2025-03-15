@@ -3,14 +3,14 @@ import 'package:project_weebworld/navbarComponent.dart';
 import 'package:project_weebworld/post_screen.dart';
 import 'package:project_weebworld/tag_search_screen.dart';
 
-class HomScreen extends StatefulWidget {
-  const HomScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
   @override
-  State<HomScreen> createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomScreen> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   final Map<int, Map<String, Widget>> _navigation = {
