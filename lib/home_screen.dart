@@ -25,6 +25,33 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        appBar: AppBar(
+          title: const Text("WeebWorld",style: TextStyle(fontWeight: FontWeight.bold, fontSize:25),
+          ),
+          actions: [
+            Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+            
+            child: Container(
+              width: 190,
+              padding: EdgeInsets.symmetric(horizontal: 15, vertical: 6),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black54, width: 0.5),
+                borderRadius: BorderRadius.circular(50),
+                color: const Color(0xFFE5EBFC).withOpacity(0.5), // สีพื้นหลังของกล่อง
+                 // สีพื้นหลังของกล่อง
+              ),
+              child: Row(children: [Text('ค้นหา',style: TextStyle(fontSize: 14)
+            ),
+            SizedBox(width: 100),
+            Icon(Icons.search, color: Colors.black54),
+            ],
+            ),
+          ),
+            ),
+        ],
+        ),
+        
         body: IndexedStack(
           index: _selectedIndex,
           children: _navigation.values.map((page) => page["screen"]!).toList(),
@@ -38,6 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedIndex: _selectedIndex,
         ),
       ),
+      
     );
   }
 }
