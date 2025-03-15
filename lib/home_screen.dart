@@ -31,7 +31,6 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
       home: Scaffold(
-        backgroundColor: Colors.white,
         body: IndexedStack(
           index: _selectedIndex,
           children: _navigation.values.map((page) => page["screen"]!).toList(),
@@ -45,6 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
           selectedIndex: _selectedIndex,
         ),
       ),
+      
     );
   }
 }
