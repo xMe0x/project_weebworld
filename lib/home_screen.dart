@@ -24,13 +24,39 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        useMaterial3: false,
-        bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: Colors.white,
-        ),
-      ),
       home: Scaffold(
+        appBar: AppBar(
+          title: Padding(
+          padding: const EdgeInsets.only(left: 15,top: 10), // ขยับเข้ามาจากซ้าย 10px
+          child: Text(
+            "WeebWorld",
+            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+          ),
+        ),
+          actions: [  
+            Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            
+            child: Container(
+              width: 200,
+              padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.black54, width: 0.5),
+                borderRadius: BorderRadius.circular(50),
+                color: const Color(0xFFE5EBFC).withOpacity(0.5), // สีพื้นหลังของกล่อง
+                 // สีพื้นหลังของกล่อง
+              ),
+              child: Row(children: [Text('ค้นหา',style: TextStyle(fontSize: 14)
+            ),
+            SizedBox(width: 110),
+            Icon(Icons.search, color: Colors.black54),
+            ],
+            ),
+          ),
+            ),
+        ],
+        ),
+        
         body: IndexedStack(
           index: _selectedIndex,
           children: _navigation.values.map((page) => page["screen"]!).toList(),
