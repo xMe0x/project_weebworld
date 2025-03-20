@@ -9,7 +9,6 @@ class Postdata {
   final String hashtag;
 
   static Future<Uint8List> loadAssetImage(String assetPath) async {
-    // ถ้า assetPath เริ่มต้นด้วย "assets/" ให้เอาออก
     String correctedPath = assetPath.startsWith("assets/") ? assetPath.substring(7) : assetPath;
     ByteData data = await rootBundle.load("assets/" + correctedPath);
     return data.buffer.asUint8List();

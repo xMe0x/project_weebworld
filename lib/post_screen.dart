@@ -105,7 +105,7 @@ class _PostScreenState extends State<PostScreen> {
     _loadExistingPosts();
   }
 
-  // โหลดโพสต์ทั้งหมดจาก SharedPreferences (ถ้ามี)
+  // โหลดโพสต์ทั้งหมดจาก SharedPreferences
   Future<void> _loadExistingPosts() async {
     await PostStorage.loadPosts();
     setState(() {});
@@ -114,6 +114,7 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
   
         backgroundColor: Colors.white,
