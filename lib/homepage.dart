@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_weebworld/detail_post_screen.dart';
 import 'package:project_weebworld/navbarComponent.dart';
 import 'package:project_weebworld/data/PostStorage.dart';
 import 'package:project_weebworld/data/postdata.dart';
@@ -72,36 +73,45 @@ class _HomepageState extends State<Homepage> {
   }
 
   // ฟังก์ชันสร้างการ์ดโพสต์แต่ละอัน
-  Widget _buildPostCard(Postdata post) {
-    return Card(
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)), 
-      elevation: 3, 
+ Widget _buildPostCard(Postdata post) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => PostDetailScreen(post: post),
+        ),
+      );
+    },
+    child: Card(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      elevation: 3,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // แสดงรูปภาพของโพสต์
           ClipRRect(
-            borderRadius: BorderRadius.vertical(top: Radius.circular(10)), 
+            borderRadius: BorderRadius.vertical(top: Radius.circular(10)),
             child: post.image1 != null
                 ? Image.memory(
-                    post.image1!, 
-                    height: 120, 
-                    width: double.infinity, 
-                    fit: BoxFit.cover, // ปรับขนาดให้พอดีกับพื้นที่
+                    post.image1!,
+                    height: 120,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
                   )
                 : Container(
                     height: 120,
-                    color: Colors.grey[300], // พื้นหลังสีเทาหากไม่มีรูป
+                    color: Colors.grey[300],
                     child: Center(child: Icon(Icons.image, size: 40, color: Colors.grey[600])),
                   ),
           ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              post.title, // ชื่อโพสต์
+              post.title,
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-              maxLines: 2, 
-              overflow: TextOverflow.ellipsis, 
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
           Padding(
@@ -109,12 +119,12 @@ class _HomepageState extends State<Homepage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("admin", style: TextStyle(color: Colors.grey, fontSize: 12)), // แสดงชื่อ admin
+                Text("admin", style: TextStyle(color: Colors.grey, fontSize: 12)),
                 Row(
                   children: [
-                    Icon(Icons.favorite, size: 16, color: Colors.red), 
-                    SizedBox(width: 4), 
-                    Text("107", style: TextStyle(fontSize: 12)), 
+                    Icon(Icons.favorite, size: 16, color: Colors.red),
+                    SizedBox(width: 4),
+                    Text("107", style: TextStyle(fontSize: 12)),
                   ],
                 ),
               ],
@@ -122,6 +132,8 @@ class _HomepageState extends State<Homepage> {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
+
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project_weebworld/data/postdata.dart';
+import 'package:project_weebworld/detail_post_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
 import 'dart:typed_data';
@@ -39,6 +40,16 @@ class _ProfileState extends State<Profile> {
             content: data["content"],
             hashtag: data["hashtag"],
             image1: image1,
+            username: data["username"],
+            profileImage: data["profileImage"],
+            comments: List<Comment>.from(
+              data["comments"].map(
+                (commentJson) => Comment(
+                  username: commentJson["username"],
+                  content: commentJson["content"],
+                ),
+              ),
+            ),
           );
         }).toList();
       });
@@ -62,7 +73,7 @@ class _ProfileState extends State<Profile> {
       
         child: Column(
           children: [
-            // 🔹 โปรไฟล์
+         
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -92,7 +103,7 @@ class _ProfileState extends State<Profile> {
               ),
             ),
 
-            // 🔹 แถบโพสต์ & บุ๊คมาร์ค
+       
             DefaultTabController(
               length: 2,
               child: Column(
@@ -109,7 +120,6 @@ class _ProfileState extends State<Profile> {
                     height: 400,
                     child: TabBarView(
                       children: [
-                        // 🔸 โพสต์ที่เคยโพสต์
                         userPosts.isEmpty
                             ? Center(child: Text("ยังไม่มีโพสต์"))
                             : GridView.builder(
@@ -124,7 +134,7 @@ class _ProfileState extends State<Profile> {
                                   return postCard(userPosts[index]);
                                 },
                               ),
-                        // 🔸 บุ๊คมาร์ค (ยังไม่มีฟังก์ชัน)
+
                         Center(child: Text("ยังไม่มีบุ๊คมาร์ค")),
                       ],
                     ),
@@ -138,7 +148,6 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  // 🔹 Widget แสดงสถิติ
   Widget profileStat(String count, String label) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -151,9 +160,18 @@ class _ProfileState extends State<Profile> {
     );
   }
 
-  // 🔹 Widget แสดงโพสต์
-  Widget postCard(Postdata post) {
-    return Card(
+
+Widget postCard(Postdata post) {
+  return GestureDetector(
+    onTap: () {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => PostDetailScreen(post: post), 
+        ),
+      );
+    },
+    child: Card(
       elevation: 2,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
       child: Column(
@@ -174,6 +192,7 @@ class _ProfileState extends State<Profile> {
           ),
         ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

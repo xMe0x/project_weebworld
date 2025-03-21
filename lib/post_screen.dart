@@ -60,6 +60,9 @@ class _PostScreenState extends State<PostScreen> {
         title: _titleController.text,
         content: _contentController.text,
         hashtag: _hashtagController.text,
+        username: '', 
+        profileImage: '', 
+        comments: [], 
       );
 
       // เพิ่มโพสต์ใหม่ลงใน List
