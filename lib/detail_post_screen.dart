@@ -7,7 +7,11 @@ class PostDetailScreen extends StatelessWidget {
   const PostDetailScreen({Key? key, required this.post}) : super(key: key);
 
   @override
+
   Widget build(BuildContext context) {
-    return Scaffold( );
+    return Scaffold(
+
+      
+     );
   }
 }
